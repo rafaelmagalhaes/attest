@@ -23,11 +23,4 @@
         font-family: 'Roboto', sans-serif;
         background: #163d69;
     }
-
-    #app {
-        display: flex;
-        justify-content: space-around;
-        padding: 5rem;
-    }
-
 </style>

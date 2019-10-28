@@ -1,29 +1,33 @@
 <template>
-    <section>
-        <div class="sidebar">
-            <div v-for="(department,index) in departments" :key="index">
-                <sidebar
-                        :departmentName="department.name"
-                        @selectDepartment="selectDepartment(department)"
-                        :selectedDepartment="selectedDepartment.name"
+    <section class="flex-grid">
+        <div class="col">
+            <div class="sidebar">
+
+                <sidebar v-for="(department,index) in departments" :key="index"
+                         :departmentName="department.name"
+                         @selectDepartment="selectDepartment(department)"
+                         :selectedDepartment="selectedDepartment.name"
                 />
+
             </div>
         </div>
-        <div class="main">
-            <div v-if="selectedDepartment">
-                <div class="badge">{{selectedDepartment.name}}</div>
-                <div class="pool" v-if="filteredQuestions && filteredQuestions.length">
-                    <div v-for="question in filteredQuestions" style="width: 100%">
-                        <p>{{question.title}}</p>
+        <div class="col">
+            <div class="main">
+                <div v-if="selectedDepartment">
+                    <div class="badge">{{selectedDepartment.name}}</div>
+                    <div class="pool" v-if="filteredQuestions && filteredQuestions.length">
+                        <div v-for="question in filteredQuestions" style="width: 100%">
+                            <p>{{question.title}}</p>
 
-                        <div v-for="answers in question.answers" style=" position:relative; padding: 0.3rem;">
-                            <poll :votes="answers.votes" :text="answers.text"/>
+                            <div v-for="answers in question.answers" style=" position:relative; padding: 0.3rem;">
+                                <poll :votes="answers.votes" :text="answers.text"/>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
+        </div>
     </section>
 </template>
 
@@ -83,9 +87,19 @@
 </script>
 
 <style>
+    .flex-grid {
+        display: flex;
+        max-width: 1280px;
+        justify-content: space-around;
+        margin: 0 auto;
+        padding: 5rem;
+    }
+
+
     .sidebar {
         position: fixed;
         width: 300px;
+        margin-left: -2rem;
     }
 
     .badge {
@@ -100,9 +114,26 @@
     }
 
     .main {
-        margin-left: 350px;
         padding: 2rem;
         border-radius: 5px;
         background: #ffff;
+    }
+
+    @media (max-width: 767px) {
+        .flex-grid {
+            display: block;
+            padding: 0;
+        }
+
+        .col {
+            width: 100%;
+            margin: 0 0 10px 0;
+        }
+
+        .sidebar {
+            margin-left: 0;
+            position: relative;
+        }
+
     }
 </style>

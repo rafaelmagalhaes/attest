@@ -37,7 +37,6 @@
 
     .sidebar__component__button.active {
         background-color: #18283a;
-        color: #778faa;
     }
 
     .sidebar__component__button:hover {
