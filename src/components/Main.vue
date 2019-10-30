@@ -13,13 +13,13 @@
         </div>
         <div class="col">
             <div class="main">
-                <div v-if="selectedDepartment">
+                <div v-if="selectedDepartment.name">
                     <div class="badge">{{selectedDepartment.name}}</div>
                     <div class="pool" v-if="filteredQuestions && filteredQuestions.length">
-                        <div v-for="question in filteredQuestions" style="width: 100%">
+                        <div v-for="question in filteredQuestions">
                             <p>{{question.title}}</p>
 
-                            <div v-for="answers in question.answers" style=" position:relative; padding: 0.3rem;">
+                            <div v-for="answers in question.answers">
                                 <poll :votes="answers.votes" :text="answers.text"/>
                             </div>
                         </div>
@@ -49,7 +49,8 @@
         },
         mounted() {
             this.$store.dispatch('getDepartments');
-            this.selectDepartment(this.departments[0]);
+            if (this.departments && this.departments.length)
+                this.selectDepartment(this.departments[0]);
             this.$store.dispatch('getQuestions');
 
         },
@@ -95,16 +96,9 @@
         padding: 5rem;
     }
 
-
-    .sidebar {
-        position: fixed;
-        width: 300px;
-        margin-left: -2rem;
-    }
-
     .badge {
-        background-color: #163d69;
-        color: #ffff;
+        background-color: var(--blue-attest);
+        color: white;
         display: inline-block;
         line-height: 16px;
         border-radius: 60px;
@@ -116,10 +110,10 @@
     .main {
         padding: 2rem;
         border-radius: 5px;
-        background: #ffff;
+        background: white;
     }
 
-    @media (max-width: 767px) {
+    @media (max-width: 1024px) {
         .flex-grid {
             display: block;
             padding: 0;
@@ -129,11 +123,5 @@
             width: 100%;
             margin: 0 0 10px 0;
         }
-
-        .sidebar {
-            margin-left: 0;
-            position: relative;
-        }
-
     }
 </style>

@@ -32,7 +32,8 @@
 </script>
 <style>
     .poll__container {
-        border: 1px solid #dbe2e8;
+        margin: 0.3rem;
+        border: 1px solid var(--light-grey-attest);
         position: relative;
         border-radius: 2px;
     }
@@ -64,10 +65,7 @@
         left: 0;
         bottom: 0;
         z-index: 0;
-        background-color: #e5ecf2;
-
-        transition: all .3s cubic-bezier(.5, 1.2, .5, 1.2);
-        -webkit-transition: all .3s cubic-bezier(.5, 1.2, .5, 1.2);
-        -moz-transition: all .3s cubic-bezier(.5, 1.2, .5, 1.2);
+        background-color:var(--light-blue);
+        transition:  .3s cubic-bezier(.5, 1.2, .5, 1.2);
     }
 </style>
